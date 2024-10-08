@@ -17,8 +17,8 @@ public class RJustSomeWheels extends LinearOpMode{
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         waitForStart();
         while (opModeIsActive()) {
-            double y = -gamepad1.left_stick_y; // Remember, this is reversed!
-            double x = gamepad1.left_stick_x;
+            double y = gamepad1.left_stick_y; // Remember, this is reversed!
+            double x = -gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
 
             double den = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
