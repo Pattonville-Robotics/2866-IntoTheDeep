@@ -7,10 +7,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class RJustSomeWheels extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
-        DcMotor motorFrontRight = hardwareMap.dcMotor.get("backRight");
-        DcMotor motorBackRight = hardwareMap.dcMotor.get("frontRight");
-        DcMotor motorFrontLeft = hardwareMap.dcMotor.get("backLeft");
-        DcMotor motorBackLeft = hardwareMap.dcMotor.get("frontLeft");
+        DcMotor motorBackRight = hardwareMap.dcMotor.get("backRight");
+        DcMotor motorFrontRight = hardwareMap.dcMotor.get("frontRight");
+        DcMotor motorBackLeft = hardwareMap.dcMotor.get("backLeft");
+        DcMotor motorFrontLeft = hardwareMap.dcMotor.get("frontLeft");
 
 
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
