@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class RWheelsAndSlide extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
-        //Wheels:
+        //Wheels: 0fL, 1bL, 2fR, 3bR
         DcMotor motorBackRight = hardwareMap.dcMotor.get("backRight");
         DcMotor motorFrontRight = hardwareMap.dcMotor.get("frontRight");
         DcMotor motorBackLeft = hardwareMap.dcMotor.get("backLeft");
@@ -17,6 +17,8 @@ public class RWheelsAndSlide extends LinearOpMode{
         DcMotor motorLinSlideLEFT = hardwareMap.dcMotor.get("lSlideLEFT");
         DcMotor motorLinSlideRIGHT = hardwareMap.dcMotor.get("lSlideRIGHT");
 
+        DcMotor motorBoomArm = hardwareMap.dcMotor.get("boomArm");
+
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         waitForStart();
@@ -25,7 +27,8 @@ public class RWheelsAndSlide extends LinearOpMode{
             double x = -gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
             double speed;
-            double LinearSlidePower = 0
+            double linearSlidePower = 0;
+            double boomArmPower = 0;
 
             if (gamepad1.right_trigger>0) {
                 speed = 0.8;
@@ -35,15 +38,24 @@ public class RWheelsAndSlide extends LinearOpMode{
                 speed = 0.4;
             }
 
-            if (gamepad1.left_bumper) {
-                System.out.println("Left = Up");
-                LinearSlidePower = 1;
-            } else if (gamepad1.right_bumper) {
-                System.out.println("Right = Down");
-                LinearSlidePower = -1;
+
+
+            if (gamepad2.left_bumper) {
+                linearSlidePower = 0.5;
+            } else if (gamepad2.right_bumper) {
+                linearSlidePower = -0.5;
             } else {
-                LinearSlidePower = 0;
+                linearSlidePower = 0;
             }
+
+            if (gamepad1.dpad_up) {
+                boomArmPower = 0.4;
+            } else if (gamepad1.dpad_down) {
+                boomArmPower = -0.4;
+            } else {
+                boomArmPower = 0;
+            }
+
 
 
             double den = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
@@ -57,8 +69,10 @@ public class RWheelsAndSlide extends LinearOpMode{
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
 
-            motorLinSlideLEFT.setPower(LinearSlidePower);
-            motorLinSlideRIGHT.setPower(LinearSlidePower);
+            motorLinSlideLEFT.setPower(linearSlidePower);
+            motorLinSlideRIGHT.setPower(linearSlidePower);
+
+            motorBoomArm.setPower(boomArmPower);
         }
     }
 }

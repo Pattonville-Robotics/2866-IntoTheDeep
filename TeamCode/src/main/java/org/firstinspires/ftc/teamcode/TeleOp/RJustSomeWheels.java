@@ -14,6 +14,7 @@ public class RJustSomeWheels extends LinearOpMode{
 
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+
         waitForStart();
         while (opModeIsActive()) {
             double y = gamepad1.left_stick_y; // Remember, this is reversed!
