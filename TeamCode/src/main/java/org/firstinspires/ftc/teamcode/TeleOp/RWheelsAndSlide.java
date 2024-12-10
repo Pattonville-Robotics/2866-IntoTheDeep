@@ -48,10 +48,10 @@ public class RWheelsAndSlide extends LinearOpMode{
                 linearSlidePower = 0;
             }
 
-            if (gamepad1.dpad_up) {
-                boomArmPower = 0.4;
-            } else if (gamepad1.dpad_down) {
-                boomArmPower = -0.4;
+            if (gamepad2.dpad_up) {
+                boomArmPower = 0.2;
+            } else if (gamepad2.dpad_down) {
+                boomArmPower = -0.2;
             } else {
                 boomArmPower = 0;
             }
