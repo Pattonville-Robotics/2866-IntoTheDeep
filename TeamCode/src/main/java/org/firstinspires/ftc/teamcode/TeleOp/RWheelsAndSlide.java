@@ -3,9 +3,12 @@ package org.firstinspires.ftc.teamcode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+
 @TeleOp
 public class RWheelsAndSlide extends LinearOpMode{
     @Override
+
     public void runOpMode() throws InterruptedException {
         //Wheels: 0fL, 1bL, 2fR, 3bR
         DcMotor motorBackRight = hardwareMap.dcMotor.get("backRight");
@@ -19,8 +22,11 @@ public class RWheelsAndSlide extends LinearOpMode{
 
         DcMotor motorBoomArm = hardwareMap.dcMotor.get("boomArm");
 
+        Servo claw = hardwareMap.servo.get("servoClaw");
+
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
+
         waitForStart();
         while (opModeIsActive()) {
             double y = gamepad1.left_stick_y; // Remember, this is reversed!
@@ -29,6 +35,7 @@ public class RWheelsAndSlide extends LinearOpMode{
             double speed;
             double linearSlidePower = 0;
             double boomArmPower = 0;
+            boolean closed = false;
 
             if (gamepad1.right_trigger>0) {
                 speed = 0.8;
@@ -54,6 +61,14 @@ public class RWheelsAndSlide extends LinearOpMode{
                 boomArmPower = -0.2;
             } else {
                 boomArmPower = 0;
+            }
+
+            if (gamepad2.a) {
+                if (closed == true) {
+                    claw.setPosition(90);
+                } else {
+                    claw.setPosition(180);
+                }
             }
 
 
